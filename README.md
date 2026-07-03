@@ -115,8 +115,6 @@ Acesse `http://localhost:3000`.
 
 ## Tecnologias
 
-| Tecnologia | Uso |
-|---|---|---|
 | Next.js | Framework React com App Router |
 | TypeScript | Tipagem estática |
 | Tailwind CSS  | Estilização utilitária |
