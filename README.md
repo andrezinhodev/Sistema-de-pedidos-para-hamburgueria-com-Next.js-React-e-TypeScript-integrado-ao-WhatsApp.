@@ -89,7 +89,7 @@ Todos os dados (categorias, produtos) vivem em `src/data/menu.ts` — um array T
 
 ```bash
 # Clone o projeto
-git clone https://github.com/seu-usuario/cardapio-online.git
+git clone https://github.com/andrezinhodev/cardapio-online.git
 cd cardapio-online
 
 # Instale as dependências
