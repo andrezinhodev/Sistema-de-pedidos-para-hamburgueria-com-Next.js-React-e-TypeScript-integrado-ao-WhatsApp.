@@ -9,7 +9,7 @@ export function Hero() {
     <img
       src="/images/comida_demonstrativa.jpg"
       alt="Imagem do restaurante"
-      className="absolute inset-0 h-full w-full object-cover blur-[3px] group-hover:blur-none transition-all duration-500"
+      className="absolute inset-0 h-full w-full rounded-2xl object-cover blur-[3px] group-hover:blur-none transition-all duration-500"
     />
 
     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent rounded-2xl" />

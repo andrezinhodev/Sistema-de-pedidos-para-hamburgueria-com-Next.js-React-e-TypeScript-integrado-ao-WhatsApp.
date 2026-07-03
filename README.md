@@ -6,7 +6,7 @@ Aplicação web completa de cardápio digital com pedido online, desenvolvida co
 
 ## Visão geral
 
-O Sabor Delivery permite que clientes de um restaurante visualizem o cardápio, filtrem por categoria, busquem produtos em tempo real, montem seu pedido e finalizem a compra — tudo sem sair do site. O design é moderno e responsivo, inspirado em plataformas como iFood e Aiqfome.
+O Sabor Delivery permite que clientes de um restaurante visualizem o cardápio, filtrem por categoria, busquem produtos em tempo real, montem seu pedido e finalizem a compra de todos os produtos do catalago, em seguida é possível enviar o pedido via WhatsApp. O design é moderno e responsivo, inspirado em plataformas como iFood e Dona Elzebia.
 
 ---
 
@@ -19,7 +19,9 @@ src/
 │   ├── page.tsx            # Página inicial
 │   ├── not-found.tsx       # Página 404 personalizada
 │   └── checkout/
-│       └── page.tsx        # Página de finalização do pedido
+│   |     └── page.tsx        # Página de finalização do pedido
+│   └── cart-orders/
+│       └── page.tsx        # Página de confirmação de pedido
 │
 ├── components/
 │   ├── layout/
@@ -31,6 +33,10 @@ src/
 │   │   ├── QuantitySelector.tsx # Controle de quantidade ±
 │   │   ├── LoadingSkeleton.tsx  # Skeleton de carregamento
 │   │   └── EmptyState.tsx       # Estado de lista vazia
+|   |
+│   └── WhatsAppButton/
+│       ├── WhatsAppButton.tsx    # Botão de envio do pedido para o WhatsApp
+|
 │   ├── category/
 │   │   └── CategoryList.tsx    # Pills de filtro por categoria
 │   ├── product/
@@ -39,10 +45,12 @@ src/
 │   │   └── MenuSection.tsx     # Seção completa do cardápio
 │   ├── cart/
 │   │   ├── CartButton.tsx      # Botão flutuante do carrinho
-│   │   └── CartDrawer.tsx      # Gaveta lateral do carrinho
+|   | 
 │   └── checkout/
 │       ├── CheckoutForm.tsx    # Formulário de finalização
 │       └── OrderSummary.tsx    # Tela de confirmação do pedido
+|
+│       
 │
 ├── context/
 │   └── CartContext.tsx     # Estado global do carrinho (Context API + useReducer)
@@ -107,14 +115,14 @@ Acesse `http://localhost:3000`.
 
 ## Tecnologias
 
-| Tecnologia | Versão | Uso |
+| Tecnologia | Uso |
 |---|---|---|
-| Next.js | 15 | Framework React com App Router |
-| TypeScript | 5 | Tipagem estática |
-| Tailwind CSS | 4 | Estilização utilitária |
-| Framer Motion | 11 | Animações e transições |
-| Lucide React | 0.383 | Ícones SVG |
-| react-hot-toast | 2 | Notificações (toasts) |
+| Next.js | Framework React com App Router |
+| TypeScript | Tipagem estática |
+| Tailwind CSS  | Estilização utilitária |
+| Framer Motion  | Animações e transições |
+| Lucide React  | Ícones SVG |
+| react-hot-toast | Notificações (toasts) |
 
 ---
 
@@ -128,7 +136,7 @@ Acesse `http://localhost:3000`.
       → Clique no card → Modal de detalhes
           → Seleciona quantidade + observações → Adiciona ao carrinho
   → CartButton aparece quando há itens
-      → Abre CartDrawer lateral
+      → Abre a page cart-orders para a confirmação do pedido
           → Edita quantidades, remove itens, adiciona observações gerais
           → "Finalizar pedido" → /checkout
 
@@ -143,22 +151,22 @@ Acesse `http://localhost:3000`.
 
 ## Diferenciais implementados
 
-- [x] Busca em tempo real com normalização de acentos
-- [x] Filtro por categoria com pills animados
-- [x] Carrinho persistido no `localStorage`
-- [x] Toasts de confirmação de ações
-- [x] Skeleton loading (componente `MenuSkeleton`)
-- [x] Página 404 personalizada
-- [x] Estados de lista vazia com call to action
-- [x] Animações suaves com Framer Motion
-- [x] Progresso visual para frete grátis
-- [x] Responsividade mobile-first
+-  Busca em tempo real com normalização de acentos
+-  Filtro por categoria com pills animados
+-  Carrinho persistido no `localStorage`
+-  Toasts de confirmação de ações
+-  Skeleton loading (componente `MenuSkeleton`)
+-  Página 404 personalizada
+-  Estados de lista vazia com call to action
+-  Animações suaves com Framer Motion
+-  Progresso visual para frete grátis
+-  Responsividade mobile-first
 
 ---
 
 ## Possíveis melhorias futuras
 
-- **Integração com API**: substituir `src/data/menu.ts` por chamadas REST ou GraphQL
+- **Integração com API**: substituir `src/data/menu.ts` por chamadas REST 
 - **Autenticação**: login do cliente para histórico de pedidos
 - **Gateway de pagamento**: integração com Mercado Pago ou Stripe
 - **Rastreamento**: tela de status do pedido em tempo real (WebSocket)

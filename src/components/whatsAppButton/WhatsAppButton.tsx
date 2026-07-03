@@ -8,44 +8,50 @@ interface WhatsAppButtonProps {
 
 export function WhatsAppButton ({ order }: WhatsAppButtonProps) {
     const handleSend = () => {
-        const items = order.items 
+        const items = order.items
         .map(
-            (item) => 
-            `${item.product.name}  ${item.quantity}x ${(item.product.price * item.quantity).toFixed(2)}`
+          (item) =>
+            `• ${item.product.name} (${item.quantity}x) - R$ ${(item.product.price * item.quantity).toFixed(2)}`
         )
-        .join("\n")
+        .join("\n");
+      
+        const message = `
+        
+            *NOVO PEDIDO*
+
+            Pedido: ${order.orderNumber}
+            Cliente: ${order.customer.name}
+
+            Tipo: ${order.deliveryType}
+            ${order.customer.address ? `Endereço: ${order.customer.address}\n` : ""}    
             
-        
-        const message = `*NOVO PEDIDO*
+            --------------------
 
-        Pedido:${order.orderNumber}
-        
-        Tipo:${order.deliveryType}
-        ${order.customer.address ? `Endereço: ${order.customer.address}` : ""}
-        
-        --------------------
-        
-        PRODUTOS
-        
-        ${items}
-        
-        --------------------
-        
-        ${order.generalNotes ? `Observações:\n${order.generalNotes}\n\n--------------------\n\n` : ""}RESUMO DO PEDIDO
-        
-        Delivery: R$ ${order.deliveryFee.toFixed(2)}
-        Subtotal: R$ ${order.subtotal.toFixed(2)}
-        
-        TOTAL: R$ ${order.total.toFixed(2)}`;
+            *PRODUTOS*
 
-        const phone = "5535997086432"
+                ${items}
 
+            --------------------
+
+            ${
+            order.generalNotes
+                ? `Observações:\n${order.generalNotes}\n\n--------------------\n\n`
+                : ""
+            }*RESUMO DO PEDIDO*
+
+            Delivery: R$ ${order.deliveryFee.toFixed(2)}
+            Subtotal: R$ ${order.subtotal.toFixed(2)}
+
+            *TOTAL: R$ ${order.total.toFixed(2)}*`
+      
+        const phone = "5535997086432";
+      
         window.open(
-            `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-            "_blank"
-          );
+          `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+          "_blank"
+        );
+      };
 
-        }
     return (
         <button
         onClick={handleSend}
